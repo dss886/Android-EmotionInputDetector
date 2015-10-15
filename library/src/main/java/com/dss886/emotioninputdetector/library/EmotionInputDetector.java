@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Build;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
@@ -69,12 +70,13 @@ public class EmotionInputDetector {
             }
         });
 
-        mEditText.setOnClickListener(new View.OnClickListener() {
+        mEditText.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                if (lastSoftInputHeight <= 0) {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP && lastSoftInputHeight <= 0) {
                     mEmotionLayout.setVisibility(View.INVISIBLE);
                 }
+                return false;
             }
         });
 
