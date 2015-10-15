@@ -2,7 +2,7 @@
 
 一个用来开发表情输入键盘的依赖库，类似于微信，QQ和Telegram
 
-// todo : add a gif demo
+![](/01.gif)
 
 ## Download
 
@@ -29,7 +29,7 @@ android:windowSoftInputMode="adjustPan"
 
 然后新建一个reply_layout，其中的布局可完全自定义，比如使用ViewPager
 
-3.使用组件库
+3.使用EmotionInputDetector
 
 ~~~java
 EmotionInputDetector.with(this)

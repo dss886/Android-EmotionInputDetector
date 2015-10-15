@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/tab_root"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?android:selectableItemBackground"
+    >
+
+    <TextView
+        android:id="@+id/text"
+        style="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/tab_height"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:textColor="@color/text_primary"
+        android:textSize="14sp"/>
+
+</RelativeLayout>
