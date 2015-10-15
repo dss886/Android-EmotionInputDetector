@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
  */
 public class EmotionInputDetector {
 
+    private static final String SHARE_PREFERENCE_NAME = "com.dss886.emotioninputdetector";
     private static final String SHARE_PREFERENCE_TAG = "soft_input_height";
 
     private InputMethodManager mInputManager;
@@ -33,7 +34,7 @@ public class EmotionInputDetector {
         EmotionInputDetector emotionInputDetector = new EmotionInputDetector();
         emotionInputDetector.mContext = activity;
         emotionInputDetector.mInputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        emotionInputDetector.sp = activity.getSharedPreferences("com.dss886.emotioninputdetector", Context.MODE_PRIVATE);
+        emotionInputDetector.sp = activity.getSharedPreferences(SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
         return emotionInputDetector;
     }
 
