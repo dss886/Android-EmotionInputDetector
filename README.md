@@ -10,14 +10,14 @@
 
 ## Usage
 
-1. 对所在的Activity配置SoftInputMode：
+1.对所在的Activity配置SoftInputMode：
 
 ~~~xml
 android:name=".MainActivity"
 android:windowSoftInputMode="adjustPan"
 ~~~
 
-2. 在布局文件的最下方中加入表情输入框的layout：
+2.在布局文件的最下方中加入表情输入框的layout：
 
 ~~~xml
 <include
@@ -29,7 +29,7 @@ android:windowSoftInputMode="adjustPan"
 
 然后新建一个reply_layout，其中的布局可完全自定义，比如使用ViewPager
 
-3. 使用组件库
+3.使用组件库
 
 ~~~java
 EmotionInputDetector.with(this)
@@ -53,6 +53,7 @@ EmotionInputDetector.with(this)
 
 ## License
 
+~~~
 Copyright 2013 Square, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -66,3 +67,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+~~~
