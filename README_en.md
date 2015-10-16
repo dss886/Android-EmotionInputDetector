@@ -72,13 +72,13 @@ the relationship of these views:
 
 ![](/02.png)
 
-### A Small Bug
+## A Small Bug
 
 The first time entering the activity, emotion layout may not function properly.
 
 (It is because that we need to change the height of emotion layout dynamicly and used SharedPreference to save the value, if entering the activity but the value doesn't exist may cause the problem)
 
-Use the methods below to detect the height of the soft keyboard before you enter the activity (e.g a login activity) will prevent the problem happened.
+Use the methods below to detect the height of the soft keyboard before you enter the activity (e.g in a login activity) will prevent the problem happened.
 
 ~~~java
 EmotionInputDetector.with(this)

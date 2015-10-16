@@ -72,7 +72,7 @@ EmotionInputDetector.with(this)
 
 ![](/02.png)
 
-### A Small Bug
+## A Small Bug
 
 在第一次进入该页面时，显示表情框高度可能会不正常。
 
