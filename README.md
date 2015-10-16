@@ -1,12 +1,31 @@
 # EmotionInputDetector
 
+![JitPack](https://img.shields.io/github/release/dss886/Android-EmotionInputDetector.svg?label=JitPack)
+
 一个用来开发表情输入键盘的依赖库，类似于微信，QQ和Telegram
 
-![](/01.gif)
+![Demo](/01.gif)
 
 ## Download
 
-// todo : add gradle method
+在project的build.gradle中加入以下语句
+
+~~~
+allprojects {
+	repositories {
+		jcenter()
+		maven { url "https://jitpack.io" }
+	}
+}
+~~~
+
+在module的build.gradle中加入以下语句
+
+~~~
+dependencies {
+	compile 'com.github.dss886:Android-EmotionInputDetector:v0.1.2'
+}
+~~~
 
 ## Usage
 
