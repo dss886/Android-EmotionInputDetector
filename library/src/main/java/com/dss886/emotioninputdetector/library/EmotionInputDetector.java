@@ -1,10 +1,12 @@
 package com.dss886.emotioninputdetector.library;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Build;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -53,7 +55,7 @@ public class EmotionInputDetector {
                         } else {
                             notHideEmojiLayout = false;
                         }
-                    } else if (softInputHeight >= 500) {
+                    } else {
                         lastSoftInputHeight = softInputHeight;
                         LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) mEmotionLayout.getLayoutParams();
                         linearParams.height = softInputHeight;
@@ -124,10 +126,25 @@ public class EmotionInputDetector {
         mContext.getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
         int screenHeight = mContext.getWindow().getDecorView().getRootView().getHeight();
         int softInputHeight = screenHeight - r.bottom;
-        if (Build.VERSION.SDK_INT >= 21) {
-            softInputHeight = softInputHeight - 144;
+        if (Build.VERSION.SDK_INT >= 18) {
+            // When SDK Level >= 18, the softInputHeight will contain the height of softButtonsBar (if has)
+            softInputHeight = softInputHeight - getSoftButtonsBarHeight();
         }
         return softInputHeight;
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private int getSoftButtonsBarHeight() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        mContext.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int usableHeight = metrics.heightPixels;
+        mContext.getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
+        int realHeight = metrics.heightPixels;
+        if (realHeight > usableHeight) {
+            return realHeight - usableHeight;
+        } else {
+            return 0;
+        }
     }
 
     private void showSoftInput() {

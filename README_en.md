@@ -62,7 +62,7 @@ EmotionInputDetector.with(this)
 
 There are 3 ResIds:
 
-- emotion_layout: the layout showing emotions, which will be covered the soft keyboard shows.
+- emotion_layout: the layout showing emotions, which will be covered when soft keyboard shows.
 - emotion_button: the button to switch emotion layout's visibility.
 - edit_text: the EditText need to bind.
 
