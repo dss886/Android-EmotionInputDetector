@@ -2,15 +2,15 @@
 
 ![JitPack](https://img.shields.io/github/release/dss886/Android-EmotionInputDetector.svg?label=JitPack)
 
-[For English Version, Click Me >>>](/README_en.md)
+[简体中文版说明 >>>](/README.md)
 
-一个用来开发表情输入键盘的依赖库，类似于微信，QQ和Telegram
+A Library to develop emotion-input layout like WeChat, Telegram, etc.
 
 ![Demo](/01.gif)
 
 ## Download
 
-在project的build.gradle中加入以下语句
+Add it in your build.gradle at the end of repositories:
 
 ~~~
 allprojects {
@@ -21,7 +21,7 @@ allprojects {
 }
 ~~~
 
-在module的build.gradle中加入以下语句
+Add the dependency in the form:
 
 ~~~
 dependencies {
@@ -31,14 +31,14 @@ dependencies {
 
 ## Usage
 
-1.对所在的Activity配置SoftInputMode：
+1.Edit SoftInputMode in your Activity:
 
 ~~~xml
 android:name=".MainActivity"
 android:windowSoftInputMode="adjustPan"
 ~~~
 
-2.在布局文件的最下方中加入表情输入框的layout：
+2.Add an custom layout at the bottom of your activity layout:
 
 ~~~xml
 <include
@@ -48,9 +48,9 @@ android:windowSoftInputMode="adjustPan"
     android:layout_alignParentBottom="true"/>
 ~~~
 
-然后新建一个reply_layout，其中的布局可完全自定义，比如使用ViewPager
+then custom your reply_layout.xml to show editText and emotion layout (e.g using a ViewPager)
 
-3.使用EmotionInputDetector
+3.Use EmotionInputDetector
 
 ~~~java
 EmotionInputDetector.with(this)
@@ -60,13 +60,13 @@ EmotionInputDetector.with(this)
 		.build();
 ~~~
 
-一共需要三个ResId：
+There are 3 ResIds:
 
-- emotion_layout: 显示表情输入框的Layout，正常输入时会被软键盘覆盖的部分
-- emotion_button: 点击显示/隐藏表情输入框的按钮
-- edit_text: 需要绑定的EditText
+- emotion_layout: the layout showing emotions, which will be covered the soft keyboard shows.
+- emotion_button: the button to switch emotion layout's visibility.
+- edit_text: the EditText need to bind.
 
-这些View的关系：
+the relationship of these views:
 
 ![](/01.png)
 
