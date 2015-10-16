@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
@@ -39,6 +40,23 @@ public class EmotionInputDetector {
         emotionInputDetector.mInputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         emotionInputDetector.sp = activity.getSharedPreferences(SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
         return emotionInputDetector;
+    }
+
+    public void detectorSoftInputHeight(final EditText editText) {
+        editText.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int softInputHeight = getSupportSoftInputHeight();
+                if (softInputHeight != lastSoftInputHeight) {
+                    if (softInputHeight >= 0) {
+                        lastSoftInputHeight = softInputHeight;
+                        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mContext);
+                        sp.edit().putInt(SHARE_PREFERENCE_TAG, softInputHeight).apply();
+                    }
+                }
+                lastSoftInputHeight = 0;
+            }
+        });
     }
 
     public EmotionInputDetector bindToEditText(int editTextResId) {

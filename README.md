@@ -72,6 +72,19 @@ EmotionInputDetector.with(this)
 
 ![](/02.png)
 
+### A Small Bug
+
+在第一次进入该页面时，显示表情框高度可能会不正常。
+
+（这是因为需要根据软键盘的高度动态改变表情框的显示高度，并使用了SharedPreference来保存该值，第一次进入页面该高度不存在就会导致显示错误）
+
+在进入表情框页面前在一个有软键盘弹出的界面（比如说，登陆界面）调用下面的方法探测一次其高度可以防止这个问题发生
+
+~~~java
+EmotionInputDetector.with(this)
+		.detectorSoftInputHeight(editText);
+~~~
+
 ## License
 
 ~~~
