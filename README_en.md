@@ -25,7 +25,7 @@ Add the dependency in the form:
 
 ~~~
 dependencies {
-	compile 'com.github.dss886:Android-EmotionInputDetector:v0.1.3'
+	compile 'com.github.dss886:Android-EmotionInputDetector:v0.1.4'
 }
 ~~~
 
