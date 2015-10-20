@@ -5,7 +5,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.EditText;
 import com.dss886.emotioninputdetector.library.EmotionInputDetector;
 import com.dss886.emotionlayout.SlidingTab.SlidingTabLayout;
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         setUpEmotionViewPager();
-        Log.d("SoftInputMethod", String.valueOf(getWindow().getAttributes().softInputMode));
     }
 
     private void setUpEmotionViewPager() {

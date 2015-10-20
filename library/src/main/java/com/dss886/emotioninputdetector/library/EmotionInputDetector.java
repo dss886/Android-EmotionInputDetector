@@ -144,8 +144,8 @@ public class EmotionInputDetector {
         mContext.getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
         int screenHeight = mContext.getWindow().getDecorView().getRootView().getHeight();
         int softInputHeight = screenHeight - r.bottom;
-        if (Build.VERSION.SDK_INT >= 18) {
-            // When SDK Level >= 18, the softInputHeight will contain the height of softButtonsBar (if has)
+        if (Build.VERSION.SDK_INT >= 20) {
+            // When SDK Level >= 20 (Android L), the softInputHeight will contain the height of softButtonsBar (if has)
             softInputHeight = softInputHeight - getSoftButtonsBarHeight();
         }
         return softInputHeight;
