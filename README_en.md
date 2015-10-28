@@ -82,6 +82,19 @@ the relationship of these views:
 
 ![](/02.png)
 
+## Options
+
+For better performance, using `EmotionInputDetector.interceptBackPress()` method in the override method `onBackPressed()` of your activity, to determine whether the back pressed action should be intercepted.
+
+~~~java
+@Override
+public void onBackPressed() {
+    if (!mDetector.interceptBackPress()) {
+        super.onBackPressed();
+    }
+}
+~~~
+
 ## License
 
 ~~~

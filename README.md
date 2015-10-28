@@ -82,6 +82,19 @@ EmotionInputDetector.with(this)
 
 ![](/02.png)
 
+## Options
+
+在Activity的onBackPressed函数中使用`EmotionInputDetector.interceptBackPress()`函数判断是否拦截返回键动作，可以得到更好的表现形式。
+
+~~~java
+@Override
+public void onBackPressed() {
+    if (!mDetector.interceptBackPress()) {
+        super.onBackPressed();
+    }
+}
+~~~
+
 ## License
 
 ~~~
