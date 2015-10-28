@@ -13,6 +13,8 @@ import com.dss886.emotionlayout.viewpager.GlobalOnItemClickManager;
 
 public class MainActivity extends AppCompatActivity {
 
+    private EmotionInputDetector mDetector;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,13 +22,20 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        EmotionInputDetector.with(this)
-                .setEmotionView(R.id.emotion_layout)
-                .bindToEditText(R.id.edit_text)
-                .bindToEmotionButton(R.id.emotion_button)
-                .build();
-
+        mDetector = EmotionInputDetector.with(this)
+                        .setEmotionView(findViewById(R.id.emotion_layout))
+                        .bindToContent(findViewById(R.id.list))
+                        .bindToEditText((EditText) findViewById(R.id.edit_text))
+                        .bindToEmotionButton(findViewById(R.id.emotion_button))
+                        .build();
         setUpEmotionViewPager();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!mDetector.interceptBackPress()) {
+            super.onBackPressed();
+        }
     }
 
     private void setUpEmotionViewPager() {
