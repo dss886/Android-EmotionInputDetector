@@ -25,65 +25,62 @@ allprojects {
 
 ~~~
 dependencies {
-	compile 'com.github.dss886:Android-EmotionInputDetector:v0.1.4'
+	compile 'com.github.dss886:Android-EmotionInputDetector:v0.2.0'
 }
 ~~~
 
 ## Usage
 
-1.对所在的Activity配置SoftInputMode：
+1.保证整个布局文件根布局为LinearLayout，其中有高度可变化的组件（比如一个ListView或一个RelativeLayout），将其layout_height设为0，将layout_weight设为1
+
+2.然后在布局文件的最下方中加入表情输入框的layout
 
 ~~~xml
-android:name=".MainActivity"
-android:windowSoftInputMode="adjustPan"
-~~~
-
-2.在布局文件的最下方中加入表情输入框的layout：
-
-~~~xml
-<include
-    layout="@layout/reply_layout"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"/>
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <include
+		layout="@layout/reply_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+</LinearLayout>
 ~~~
 
-然后新建一个reply_layout，其中的布局可完全自定义，比如使用ViewPager
+3.然后新建一个reply_layout，其中的布局可完全自定义，如Sample项目使用了一个ViewPager
 
-3.使用EmotionInputDetector
+4.使用EmotionInputDetector
 
 ~~~java
 EmotionInputDetector.with(this)
-		.setEmotionView(R.id.emotion_layout)
-		.bindToEmotionButton(R.id.emotion_button)
-		.bindToEditText(R.id.edit_text)
-		.build();
+	    .setEmotionView(emotionView)
+	    .bindToContent(contentView)
+	    .bindToEditText(editText)
+	    .bindToEmotionButton(emotionButton)
+	    .build();
 ~~~
 
-一共需要三个ResId：
+这里一共需要设置四个View：
 
-- emotion_layout: 显示表情输入框的Layout，正常输入时会被软键盘覆盖的部分
-- emotion_button: 点击显示/隐藏表情输入框的按钮
-- edit_text: 需要绑定的EditText
+- emotionView: 显示表情框的Layout
+- contentView: 根布局中高度可变化的组件 (如Usage#1中的listview)
+- editText: 需要绑定的EditText
+- emotionButton: 点击显示/隐藏表情框的按钮
 
 这些View的关系：
 
 ![](/01.png)
 
 ![](/02.png)
-
-## A Small Bug
-
-在第一次进入该页面时，显示表情框高度可能会不正常。
-
-（这是因为需要根据软键盘的高度动态改变表情框的显示高度，并使用了SharedPreference来保存该值，第一次进入页面该高度不存在就会导致显示错误）
-
-在进入表情框页面前在一个有软键盘弹出的界面（比如说，登陆界面）调用下面的方法探测一次其高度可以防止这个问题发生
-
-~~~java
-EmotionInputDetector.with(this)
-		.detectorSoftInputHeight(editText);
-~~~
 
 ## License
 

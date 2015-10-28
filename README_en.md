@@ -25,65 +25,62 @@ Add the dependency in the form:
 
 ~~~
 dependencies {
-	compile 'com.github.dss886:Android-EmotionInputDetector:v0.1.4'
+	compile 'com.github.dss886:Android-EmotionInputDetector:v0.2.0'
 }
 ~~~
 
 ## Usage
 
-1.Edit SoftInputMode in your Activity:
+1.Make sure the root layout of your activity is a LinearLayout, and there are a view/layout of variable height in it (like a ListView or a RelativeLayout). Set the height-variable view/layout's layout_height as 0 and the layout_weight as 1
+
+2.Add your custom emotion-input layout at the bottom of your activity layout:
 
 ~~~xml
-android:name=".MainActivity"
-android:windowSoftInputMode="adjustPan"
-~~~
-
-2.Add an custom layout at the bottom of your activity layout:
-
-~~~xml
-<include
-    layout="@layout/reply_layout"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"/>
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <include
+		layout="@layout/reply_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"/>
+
+</LinearLayout>
 ~~~
 
-then custom your reply_layout.xml to show editText and emotion layout (e.g using a ViewPager)
+3.then custom your reply_layout.xml to show editText and emotion layout (e.g using a ViewPager as the Sample module)
 
-3.Use EmotionInputDetector
+4.Use EmotionInputDetector
 
 ~~~java
 EmotionInputDetector.with(this)
-		.setEmotionView(R.id.emotion_layout)
-		.bindToEmotionButton(R.id.emotion_button)
-		.bindToEditText(R.id.edit_text)
-		.build();
+	    .setEmotionView(emotionView)
+	    .bindToContent(contentView)
+	    .bindToEditText(editText)
+	    .bindToEmotionButton(emotionButton)
+	    .build();
 ~~~
 
-There are 3 ResIds:
+There are 4 views:
 
-- emotion_layout: the layout showing emotions, which will be covered when soft keyboard shows.
-- emotion_button: the button to switch emotion layout's visibility.
-- edit_text: the EditText need to bind.
+- emotionView: the layout to show clickable emotions.
+- contentView: the height-variable view/layout in the root layout.
+- editText: the EditText need to bind.
+- emotionButton: the button to switch emotion layout's visibility.
 
 the relationship of these views:
 
 ![](/01.png)
 
 ![](/02.png)
-
-## A Small Bug
-
-The first time entering the activity, emotion layout may not function properly.
-
-(It is because that we need to change the height of emotion layout dynamicly and used SharedPreference to save the value, if entering the activity but the value doesn't exist may cause the problem)
-
-Use the methods below to detect the height of the soft keyboard before you enter the activity (e.g in a login activity) will prevent the problem happened.
-
-~~~java
-EmotionInputDetector.with(this)
-		.detectorSoftInputHeight(editText);
-~~~
 
 ## License
 
