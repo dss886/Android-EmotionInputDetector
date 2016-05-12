@@ -2,7 +2,7 @@
 
 ![JitPack](https://img.shields.io/github/release/dss886/Android-EmotionInputDetector.svg?label=JitPack)
 
-[简体中文版说明 >>>](/README.md)
+[简体中文版说明 >>>](/README_cn.md)
 
 A Library to develop emotion-input layout like WeChat, Telegram, etc.
 

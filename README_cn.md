@@ -2,7 +2,7 @@
 
 ![JitPack](https://img.shields.io/github/release/dss886/Android-EmotionInputDetector.svg?label=JitPack)
 
-[For English Version, Click Me >>>](/README_en.md)
+[For English Version, Click Me >>>](/README.md)
 
 一个用来开发表情输入键盘的依赖库，类似于微信，QQ和Telegram
 
