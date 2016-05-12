@@ -2,15 +2,15 @@
 
 ![JitPack](https://img.shields.io/github/release/dss886/Android-EmotionInputDetector.svg?label=JitPack)
 
-[For English Version, Click Me >>>](/README_en.md)
+[简体中文版说明 >>>](/README.md)
 
-一个用来开发表情输入键盘的依赖库，类似于微信，QQ和Telegram
+A Library to develop emotion-input layout like WeChat, Telegram, etc.
 
 ![Demo](/01.gif)
 
 ## Download
 
-在project的build.gradle中加入以下语句
+Add it in your build.gradle at the end of repositories:
 
 ~~~
 allprojects {
@@ -21,7 +21,7 @@ allprojects {
 }
 ~~~
 
-在module的build.gradle中加入以下语句
+Add the dependency in the form:
 
 ~~~
 dependencies {
@@ -31,9 +31,9 @@ dependencies {
 
 ## Usage
 
-1.保证整个布局文件根布局为LinearLayout，其中有高度可变化的组件（比如一个ListView或一个RelativeLayout），将其layout_height设为0，将layout_weight设为1
+1.Make sure the root layout of your activity is a LinearLayout, and there are a view/layout of variable height in it (like a ListView or a RelativeLayout). Set the height-variable view/layout's layout_height as 0 and the layout_weight as 1
 
-2.然后在布局文件的最下方中加入表情输入框的layout
+2.Add your custom emotion-input layout at the bottom of your activity layout:
 
 ~~~xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -56,9 +56,9 @@ dependencies {
 </LinearLayout>
 ~~~
 
-3.然后新建一个reply_layout，其中的布局可完全自定义，如Sample项目使用了一个ViewPager
+3.then custom your reply_layout.xml to show editText and emotion layout (e.g using a ViewPager as the Sample module)
 
-4.使用EmotionInputDetector
+4.Use EmotionInputDetector
 
 ~~~java
 EmotionInputDetector.with(this)
@@ -69,14 +69,14 @@ EmotionInputDetector.with(this)
 	    .build();
 ~~~
 
-这里一共需要设置四个View：
+There are 4 views:
 
-- emotionView: 显示表情框的Layout
-- contentView: 根布局中高度可变化的组件 (如Usage#1中的listview)
-- editText: 需要绑定的EditText
-- emotionButton: 点击显示/隐藏表情框的按钮
+- emotionView: the layout to show clickable emotions.
+- contentView: the height-variable view/layout in the root layout.
+- editText: the EditText need to bind.
+- emotionButton: the button to switch emotion layout's visibility.
 
-这些View的关系：
+the relationship of these views:
 
 ![](/01.png)
 
@@ -84,7 +84,7 @@ EmotionInputDetector.with(this)
 
 ## Options
 
-在Activity的onBackPressed函数中使用`EmotionInputDetector.interceptBackPress()`函数判断是否拦截返回键动作，可以得到更好的表现形式。
+For better performance, using `EmotionInputDetector.interceptBackPress()` method in the override method `onBackPressed()` of your activity, to determine whether the back pressed action should be intercepted.
 
 ~~~java
 @Override
