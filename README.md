@@ -94,6 +94,7 @@ public void onBackPressed() {
     }
 }
 ~~~
+basic requirements like xml etc.
 
 ## License
 
